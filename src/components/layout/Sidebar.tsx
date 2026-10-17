@@ -95,16 +95,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
       
       {/* Brand Header */}
       <div>
-        <div className="h-16 flex items-center gap-3 px-5 border-b border-purple-100/70 bg-white/40">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7C3AED] to-[#A78BFA] flex items-center justify-center text-white shadow-md shadow-purple-500/20">
-            <MessageSquare className="w-5 h-5 text-white" />
+        <div className="h-16 flex items-center gap-3 px-5 border-b border-teal-100/70 bg-white/40">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#0D9488] to-[#14B8A6] flex items-center justify-center text-white shadow-md shadow-teal-500/20 text-base">
+            🦷
           </div>
           <div>
             <span className="font-extrabold text-sm tracking-tight text-slate-900 flex items-center gap-1.5">
-              Aura CRM
-              <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-md bg-purple-100 text-purple-700">IA</span>
+              Diente Feliz
+              <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-md bg-teal-100 text-teal-700">DENTAL</span>
             </span>
-            <p className="text-[10px] text-purple-500 font-medium">WhatsApp Intelligence</p>
+            <p className="text-[10px] text-teal-600 font-medium">CRM Dental & WhatsApp IA</p>
           </div>
         </div>
 

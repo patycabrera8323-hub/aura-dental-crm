@@ -616,8 +616,8 @@ app.post('/api/webhook/whatsapp', async (req, res) => {
     // Flujo de Precios (Opción 1)
     if (isPriceQuery) {
       const priceText = isEnglish
-        ? `🩺 *Consultation and Evaluation Prices:*\n\n• General Consultation & Diagnosis: *$45 USD / $850 MXN*\n• Includes comprehensive medical evaluation and personalized treatment plan.\n\nWould you like to book a slot for this week?\n\nReply with:\n*2.* 📅 Book Appointment\n*4.* 📍 Clinic Location`
-        : `🩺 *Precios de Consulta y Valoración:*\n\n• Consulta General y Diagnóstico: *$45 USD / $850 MXN*\n• Incluye revisión médica completa y plan personalizado de tratamiento.\n\n¿Deseas apartar tu espacio para esta semana?\n\nResponde con:\n*2.* 📅 Agendar Cita\n*4.* 📍 Ubicación de la clínica`;
+        ? `🦷 *Dental Consultation and Evaluation Prices:*\n\n• Initial Diagnostic Consultation & Intraoral Camera: *$35 USD / $650 MXN*\n• Includes comprehensive dental checkup, cavity detection, and personalized treatment plan.\n\nWould you like to book a slot for this week?\n\nReply with:\n*2.* 📅 Book Appointment\n*4.* 📍 Dental Clinic Location`
+        : `🦷 *Precios de Consulta y Valoración Dental:*\n\n• Consulta Diagnóstica y Cámara Intraoral: *$35 USD / $650 MXN*\n• Incluye revisión dental completa, detección de caries y plan personalizado de tratamiento.\n\n¿Deseas apartar tu espacio para esta semana?\n\nResponde con:\n*2.* 📅 Agendar Cita\n*4.* 📍 Ubicación de la clínica`;
       
       const buttons = isEnglish ? [
         { id: 'btn_citas', title: '📅 Book Appointment' },
@@ -634,8 +634,8 @@ app.post('/api/webhook/whatsapp', async (req, res) => {
     // Flujo de Citas (Opción 2)
     if (isAppointmentQuery) {
       const appointmentText = isEnglish
-        ? `📅 *Appointment Availability:*\n\nWe have slots open this week:\n• *Thursday:* 10:30 AM or 4:00 PM\n• *Friday:* 11:00 AM or 5:30 PM\n\nWhich time works best for you? If you prefer another day, please let us know!`
-        : `📅 *Disponibilidad de Citas:*\n\nContamos con espacios disponibles esta semana:\n• *Jueves:* 10:30 AM o 4:00 PM\n• *Viernes:* 11:00 AM o 5:30 PM\n\n¿Cuál horario te queda mejor? Si prefieres otro día, indícanoslo y con gusto te buscamos cupo.`;
+        ? `📅 *Dental Appointment Availability:*\n\nWe have slots open this week:\n• *Thursday:* 10:30 AM or 4:00 PM\n• *Friday:* 11:00 AM or 5:30 PM\n\nWhich time works best for your dental visit? If you prefer another day, please let us know!`
+        : `📅 *Disponibilidad de Citas Dentales:*\n\nContamos con espacios disponibles esta semana:\n• *Jueves:* 10:30 AM o 4:00 PM\n• *Viernes:* 11:00 AM o 5:30 PM\n\n¿Cuál horario te queda mejor? Si prefieres otro día, indícanoslo y con gusto te buscamos cupo.`;
       if (conversation) await saveMessage(conversation.id, 'bot', appointmentText);
       await sendWhatsAppMessage(from, appointmentText);
       return;
@@ -644,8 +644,8 @@ app.post('/api/webhook/whatsapp', async (req, res) => {
     // Flujo de Asesor Humano (Opción 3)
     if (isHandoffQuery) {
       const handoffText = isEnglish
-        ? `👨‍⚕️ Got it, ${senderName}. I have transferred this chat to one of our human coordinators. Someone will assist you shortly here.`
-        : `👨‍⚕️ Entendido, ${senderName}. He transferido esta conversación a uno de nuestros asesores humanos. En breve te responderán directamente por aquí.`;
+        ? `👨‍⚕️ Got it, ${senderName}. I have transferred this chat to one of our dental coordinators. Someone will assist you shortly here.`
+        : `👨‍⚕️ Entendido, ${senderName}. He transferido esta conversación a uno de nuestros odontólogos / coordinadores. En breve te responderán directamente por aquí.`;
       if (conversation) {
         await updateConversationStatus(conversation.id, 'human_handoff');
         await saveMessage(conversation.id, 'bot', handoffText);
@@ -657,8 +657,8 @@ app.post('/api/webhook/whatsapp', async (req, res) => {
     // Flujo de Ubicación (Opción 4)
     if (isLocationQuery) {
       const locationText = isEnglish
-        ? `📍 *Clínica Aura Location:*\n\nAddress: *Av. Médica Central #500, Tower B, 3rd Floor*.\nWe offer dedicated patient parking and wheelchair accessibility.\n\nWould you like to schedule your visit?`
-        : `📍 *Ubicación de Clínica Aura:*\n\nEstamos ubicados en: *Av. Médica Central #500, Torre B, Piso 3*.\nContamos con estacionamiento para pacientes y acceso para personas con movilidad reducida.\n\n¿Te gustaría programar tu visita?`;
+        ? `📍 *Clínica Dental Diente Feliz Location:*\n\nAddress: *Av. Sonrisas #120, Suite 201, Medical Dental Plaza*.\nWe offer dedicated patient parking and modern dental facilities.\n\nWould you like to schedule your visit?`
+        : `📍 *Ubicación de Clínica Dental Diente Feliz:*\n\nEstamos ubicados en: *Av. Sonrisas #120, Consultorio 201, Plaza Médica Dental*.\nContamos con estacionamiento para pacientes y consultorios modernos de odontología integral.\n\n¿Te gustaría programar tu visita?`;
       if (conversation) await saveMessage(conversation.id, 'bot', locationText);
       await sendWhatsAppMessage(from, locationText);
       return;
@@ -678,17 +678,17 @@ app.post('/api/webhook/whatsapp', async (req, res) => {
 
     if (isGreeting) {
       const welcomeText = isEnglish
-        ? `Hello ${senderName}! 👋 Welcome to Clínica Aura Specialists.\n\nHow can we help you today? Pick an option or type its number:\n\n*1.* 💰 Prices\n*2.* 📅 Book Appointment\n*3.* 👨‍⚕️ Talk to Advisor`
-        : `¡Hola ${senderName}! 👋 Bienvenido a Clínica Aura Especialistas.\n\n¿Cómo podemos ayudarte hoy? Elige una opción o escribe su número:\n\n*1.* 💰 Ver Precios\n*2.* 📅 Agendar Cita\n*3.* 👨‍⚕️ Hablar con Asesor`;
+        ? `Hello ${senderName}! 👋 Welcome to Clínica Dental Diente Feliz 🦷.\n\nHow can we help your smile today? Pick an option or type its number:\n\n*1.* 💰 Prices\n*2.* 📅 Book Dental Appointment\n*3.* 👨‍⚕️ Talk to Dentist`
+        : `¡Hola ${senderName}! 👋 Bienvenido a Clínica Dental Diente Feliz 🦷✨.\n\n¿Cómo podemos ayudarte hoy a cuidar tu sonrisa? Elige una opción o escribe su número:\n\n*1.* 💰 Ver Precios Dentales\n*2.* 📅 Agendar Cita Dental\n*3.* 👨‍⚕️ Hablar con Odontólogo`;
       
       const buttons = isEnglish ? [
         { id: 'btn_precios', title: '💰 Prices' },
         { id: 'btn_citas', title: '📅 Book Appointment' },
-        { id: 'btn_asesor', title: '👨‍⚕️ Human Advisor' }
+        { id: 'btn_asesor', title: '👨‍⚕️ Dentist Advisor' }
       ] : [
         { id: 'btn_precios', title: '💰 Ver Precios' },
         { id: 'btn_citas', title: '📅 Agendar Cita' },
-        { id: 'btn_asesor', title: '👨‍⚕️ Hablar con Asesor' }
+        { id: 'btn_asesor', title: '👨‍⚕️ Hablar con Doctor' }
       ];
 
       if (conversation) {
@@ -728,22 +728,23 @@ app.post('/api/webhook/whatsapp', async (req, res) => {
       aiMessages = [{ role: 'user', content: text }];
     }
 
-    const systemInstruction = `Eres AuraBot, el asistente médico y de atención al paciente de Clínica Aura Especialistas.
-Tu labor es responder dudas con calidez, empatía y brevedad (máximo 2 párrafos cortos de estilo WhatsApp).
+    const systemInstruction = `Eres DienteBot, el asistente odontológico y de atención al paciente de Clínica Dental Diente Feliz 🦷✨.
+Tu labor es responder dudas dentales con calidez, empatía y brevedad (máximo 2 párrafos cortos de estilo WhatsApp).
 
 REGLAS DE ORO OBLIGATORIAS:
 1. DETECCIÓN AUTOMÁTICA DE IDIOMA (MULTILINGÜE UNIVERSAL):
    - Detecta de forma estricta el idioma en que escribe el paciente (español, inglés, portugués, francés, etc.).
    - Responde SIEMPRE en ese MISMO idioma de manera impecable y natural.
-   - Si el paciente dice "I feel bad", "I am sick", "My head hurts", responde 100% en inglés con empatía médica, preguntando síntomas y ofreciendo agendar consulta.
+   - Si el paciente dice "My tooth hurts", "I need a dentist", "I have toothache", responde 100% en inglés con empatía odontológica, preguntando si el dolor es al masticar, al frío/calor, y ofreciendo cita de valoración.
    - Si escribe en español, responde en español.
 2. FORMATO DIRECTO:
    - Responde directamente al paciente como en un chat de WhatsApp real.
-   - NUNCA incluyas tus pensamientos internos, etiquetas <think>, notas de razonamiento ni explicaciones de tus decisiones.
-3. PROTOCOLO MÉDICO Y VENTAS:
-   - Sé cálido y compasivo ante malestares o síntomas.
-   - Consulta general de valoración: $45 USD / $850 MXN.
-   - Si el paciente tiene una urgencia grave o solicita hablar con una persona, sugiérele contactar a un asesor o acudir a emergencias.`;
+   - NUNCA incluyas tus pensamientos internos, etiquetas <think>, notas de razonamiento ni explicaciones técnicas.
+3. PROTOCOLO ODONTOLÓGICO Y VENTAS:
+   - Sé muy cálido y tranquilizador si el paciente manifiesta dolor de muela, caries o miedo al dentista.
+   - Consulta de valoración y diagnóstico dental con cámara intraoral: $35 USD / $650 MXN.
+   - Servicios principales: Limpiezas con ultrasonido, Ortodoncia (brackets/alineadores), Blanqueamiento dental láser, Extracciones y Muelas del juicio, Endodoncias y Resinas.
+   - Si es una urgencia de dolor severo o solicita hablar con un humano, invítale a hablar con nuestro odontólogo de turno.`;
 
     let replyText = '';
     let inputTokens = 0;

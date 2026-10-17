@@ -25,37 +25,38 @@ export const INITIAL_USERS: User[] = [
 ];
 
 export const INITIAL_AGENT_SETTINGS: AgentSettings = {
-  botName: 'AuraBot IA',
-  businessName: 'Clínica Aura Especialistas & Bienestar',
-  businessType: 'Salud, Estética y Consultoría Médica',
+  botName: 'DienteBot IA',
+  businessName: 'Clínica Dental Diente Feliz 🦷✨',
+  businessType: 'Odontología Integral, Ortodoncia y Estética Dental',
   tone: 'empatico_medico',
-  customPrompt: 'Brinda atención cálida y resolutiva. Prioriza responder dudas sobre tratamientos, tiempos de recuperación y agendar la consulta de valoración.',
+  customPrompt: 'Brinda atención cálida, empática y resolutiva para pacientes dentales. Prioriza resolver dolor o urgencias dentales, dudas sobre tratamientos (limpieza, ortodoncia, blanqueamiento) y agendar la consulta de valoración.',
   autoAppointmentBooking: true,
   autoStageTransition: true,
-  businessHours: 'Lunes a Sábado de 8:00 AM a 8:00 PM',
-  welcomeMessage: '¡Hola! 💜 Gracias por contactar a Clínica Aura. Soy AuraBot, tu asistente inteligente. ¿En qué especialidad o consulta podemos ayudarte hoy?',
-  fallbackMessage: 'He tomado nota de tu solicitud. Un asesor médico especializado continuará tu atención en unos instantes.',
-  consultationPrice: '$45 USD / $850 MXN (Incluye diagnóstico y plan)',
-  locationAddress: 'Av. Las Palmas 450, Torre Médica Platinum, Piso 3, Consultorio 304',
+  businessHours: 'Lunes a Sábado de 9:00 AM a 7:00 PM',
+  welcomeMessage: '¡Hola! 🦷 Gracias por contactar a Clínica Dental Diente Feliz. Soy DienteBot, tu asistente dental. ¿En qué podemos ayudarte hoy para cuidar tu sonrisa?',
+  fallbackMessage: 'He tomado nota de tu solicitud. Uno de nuestros odontólogos continuará tu atención en unos instantes.',
+  consultationPrice: '$35 USD / $650 MXN (Incluye diagnóstico, revisión con cámara intraoral y plan)',
+  locationAddress: 'Av. Sonrisas #120, Consultorio 201, Plaza Médica Dental',
   servicesCatalog: [
-    'Dermatología & Tratamientos Faciales',
-    'Ortodoncia Invisible & Sonrisa',
-    'Consulta Médica General & Nutrición',
-    'Fisioterapia y Rehabilitación',
-    'Cirugía Estética y Reconstructiva',
-    'Chequeo Preventivo Ejecutivo'
+    'Limpieza Dental con Ultrasonido (Profilaxis)',
+    'Blanqueamiento Dental Láser',
+    'Ortodoncia (Brackets y Alineadores Invisibles)',
+    'Extracciones y Muelas del Juicio',
+    'Resinas Estéticas y Curaciones',
+    'Endodoncia (Tratamiento de Conducto)',
+    'Implantes Dentales y Prótesis'
   ]
 };
 
 export const INITIAL_WHATSAPP_CONNECTION: WhatsAppConnection = {
   isConnected: true,
-  phoneNumber: '+52 1 55 8421 9900',
-  displayName: 'Clínica Aura Oficial 🩺',
-  qrCodeToken: 'aura_qr_session_live_authenticated_token',
-  webhookUrl: typeof window !== 'undefined' ? `${window.location.origin}/api/webhook/whatsapp` : 'https://ais-pre-icymb44tectv3vwvuwlt4b-204608689121.us-west2.run.app/api/webhook/whatsapp',
-  verifyToken: 'aura_crm_whatsapp_secret_2026',
-  lastSync: 'Hace 2 minutos',
-  batteryLevel: 94,
+  phoneNumber: '+52 1 55 0000 0000',
+  displayName: 'Clínica Dental Diente Feliz 🦷',
+  qrCodeToken: 'diente_feliz_qr_token',
+  webhookUrl: typeof window !== 'undefined' ? `${window.location.origin}/api/webhook/whatsapp` : '/api/webhook/whatsapp',
+  verifyToken: 'diente_feliz_whatsapp_secret_2026',
+  lastSync: 'Hace 1 minuto',
+  batteryLevel: 98,
 };
 
 // ✅ Sin datos demo — los leads reales llegan automáticamente desde Supabase vía /api/crm/leads-live
@@ -64,22 +65,22 @@ export const INITIAL_LEADS: Lead[] = [];
 export const INITIAL_CAMPAIGNS: BroadcastCampaign[] = [
   {
     id: 'camp_1',
-    name: 'Recontacto Cartera: Bono Consulta de Primavera 🌸',
+    name: 'Recontacto Cartera: Limpieza Dental Semestral 🦷',
     targetStage: 'en_cartera',
-    templateMessage: '¡Hola {nombre}! 💜 En Clínica Aura recordamos tu interés en {servicio}. Este mes tenemos un 25% de cortesía en tu consulta de valoración. ¿Te gustaría agendar esta semana?',
-    scheduledDate: '2026-10-05',
+    templateMessage: '¡Hola {nombre}! 🦷 En Clínica Dental Diente Feliz queremos recordarte que ya pasaron varios meses desde tu última visita. ¿Te gustaría agendar tu limpieza dental preventiva con 20% de descuento esta semana?',
+    scheduledDate: '2026-10-16',
     status: 'borrador',
-    recipientCount: 14,
-    openRate: 78
+    recipientCount: 10,
+    openRate: 85
   },
   {
     id: 'camp_2',
-    name: 'Recordatorio Pre-Consulta & Confirmación 📅',
+    name: 'Confirmación de Cita Odontológica 📅',
     targetStage: 'atendiendo',
-    templateMessage: 'Hola {nombre}, te recordamos tu cita programada en Clínica Aura. ¿Nos confirmas tu asistencia con un "SÍ"? 😊',
-    scheduledDate: '2026-10-02',
+    templateMessage: 'Hola {nombre}, te recordamos tu cita en Clínica Dental Diente Feliz. ¿Nos confirmas tu asistencia? 😊',
+    scheduledDate: '2026-10-15',
     status: 'completada',
-    recipientCount: 8,
-    openRate: 95
+    recipientCount: 5,
+    openRate: 98
   }
 ];
